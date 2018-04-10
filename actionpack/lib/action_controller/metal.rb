@@ -197,6 +197,7 @@ module ActionController
 
     def set_request!(request) #:nodoc:
       @_request = request
+      # mark 获取controller instance
       @_request.controller_instance = self
     end
 

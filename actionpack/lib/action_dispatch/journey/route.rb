@@ -33,6 +33,14 @@ module ActionDispatch
           def self.verb; ""; end
         end
 
+        # mark 这里的object就是{all: All}，是一个hash，最终得到:
+        # {:all=>ActionDispatch::Journey::Route::VerbMatchers::All,
+        #  "DELETE"=>ActionDispatch::Journey::Route::VerbMatchers::DELETE,
+        #  "delete"=>ActionDispatch::Journey::Route::VerbMatchers::DELETE,
+        #  :delete=>ActionDispatch::Journey::Route::VerbMatchers::DELETE,
+        #  "GET"=>ActionDispatch::Journey::Route::VerbMatchers::GET,
+        #  "get"=>ActionDispatch::Journey::Route::VerbMatchers::GET
+        # ... }
         VERB_TO_CLASS = VERBS.each_with_object(all: All) do |verb, hash|
           klass = const_get verb
           hash[verb]                 = klass

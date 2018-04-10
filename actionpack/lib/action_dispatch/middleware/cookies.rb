@@ -74,14 +74,16 @@ module ActionDispatch
   #   cookies[:user_name] = "david"
   #
   #   # Cookie values are String based. Other data types need to be serialized.
+  # mark
   #   cookies[:lat_lon] = JSON.generate([47.68, -122.37])
   #
-  #   # Sets a cookie that expires in 1 hour.
-  #   cookies[:login] = { value: "XJ-122", expires: 1.hour.from_now }
+    # Sets a cookie that expires in 1 hour.
+    # cookies[:login] = { value: "XJ-122", expires: 1.hour.from_now }
   #
   #   # Sets a signed cookie, which prevents users from tampering with its value.
   #   # The cookie is signed by your app's `secrets.secret_key_base` value.
   #   # It can be read using the signed method `cookies.signed[:name]`
+  # mark
   #   cookies.signed[:user_id] = current_user.id
   #
   #   # Sets an encrypted cookie value before sending it to the client which

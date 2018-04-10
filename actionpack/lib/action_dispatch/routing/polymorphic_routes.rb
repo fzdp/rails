@@ -103,6 +103,7 @@ module ActionDispatch
           return polymorphic_url record, options
         end
 
+        # mark 这参数命名挺有意思的
         if mapping = polymorphic_mapping(record_or_hash_or_array)
           return mapping.call(self, [record_or_hash_or_array, options], false)
         end

@@ -53,6 +53,7 @@ module ActionDispatch
       end
 
       class Mapping #:nodoc:
+        # mark %r{regex}
         ANCHOR_CHARACTERS_REGEX = %r{\A(\\A|\^)|(\\Z|\\z|\$)\Z}
         OPTIONAL_FORMAT_REGEX = %r{(?:\(\.:format\)+|\.:format|/)\Z}
 
@@ -424,6 +425,7 @@ module ActionDispatch
         # and +:action+ to the controller's action. A pattern can also map
         # wildcard segments (globs) to params:
         #
+        # mark wildcard segments globs
         #   get 'songs/*category/:title', to: 'songs#show'
         #
         #   # 'songs/rock/classic/stairway-to-heaven' sets
@@ -471,6 +473,7 @@ module ActionDispatch
         #   <tt>params[<:param>]</tt>.
         #   In your router:
         #
+        # mark override default id identifier
         #      resources :user, param: :name
         #
         #   You can override <tt>ActiveRecord::Base#to_param</tt> of a related
@@ -1364,6 +1367,7 @@ module ActionDispatch
         #   as a comment on a blog post like <tt>/posts/a-long-permalink/comments/1234</tt>
         #   to be shortened to just <tt>/comments/1234</tt>.
         #
+        # mark shallow_path
         # [:shallow_path]
         #   Prefixes nested shallow routes with the specified path.
         #
@@ -1721,6 +1725,7 @@ module ActionDispatch
             @scope[:constraints][parent_resource.param]
           end
 
+        # mark canonical
           def canonical_action?(action)
             resource_method_scope? && CANONICAL_ACTIONS.include?(action.to_s)
           end

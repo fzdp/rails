@@ -25,6 +25,7 @@ module ActionDispatch
         def dispatcher?; true; end
 
         def serve(req)
+          # mark path_parameters { :controller => 'xx', :action => 'xxx' }
           params     = req.path_parameters
           controller = controller req
           res        = controller.make_response! req
@@ -40,6 +41,7 @@ module ActionDispatch
       private
 
         def controller(req)
+          # mark controller_class
           req.controller_class
         rescue NameError => e
           raise ActionController::RoutingError, e.message, e.backtrace
@@ -399,6 +401,8 @@ module ActionDispatch
       def make_request(env)
         request_class.new env
       end
+
+      # mark make method private
       private :make_request
 
       def draw(&block)
@@ -482,6 +486,8 @@ module ActionDispatch
 
           # Define url_for in the singleton level so one can do:
           # Rails.application.routes.url_helpers.url_for(args)
+
+          # mark Class.new
           proxy_class = Class.new do
             include UrlFor
             include routes.named_routes.path_helpers_module

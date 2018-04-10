@@ -126,6 +126,7 @@ module ActionDispatch
   #   # provides named routes for show, delete, and edit
   #   link_to @article.title, blog_show_path(id: @article.id)
   #
+  # mark pretty URLs
   # == Pretty URLs
   #
   # Routes can generate pretty URLs. For example:
@@ -196,6 +197,7 @@ module ActionDispatch
   #
   # You can reload routes if you feel you must:
   #
+  # mark
   #   Rails.application.reload_routes!
   #
   # This will clear all named routes and reload config/routes.rb if the file has been modified from
@@ -240,7 +242,7 @@ module ActionDispatch
   # == View a list of all your routes
   #
   #   rails routes
-  #
+  # mark rails routes -c dubbing
   # Target specific controllers by prefixing the command with <tt>-c</tt> option.
   #
   module Routing

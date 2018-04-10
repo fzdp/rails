@@ -78,6 +78,7 @@ module ActionDispatch
       end
 
       def content_type(path)
+        # mark
         ::Rack::Mime.mime_type(::File.extname(path), "text/plain".freeze)
       end
 
@@ -86,8 +87,10 @@ module ActionDispatch
       end
 
       def gzip_file_path(path)
+        # mark non-capturing group (?:pattern)
         can_gzip_mime = content_type(path) =~ /\A(?:text\/|application\/javascript)/
         gzip_path     = "#{path}.gz"
+        # mark File.join
         if can_gzip_mime && File.exist?(File.join(@root, ::Rack::Utils.unescape_path(gzip_path)))
           gzip_path
         else
@@ -115,6 +118,7 @@ module ActionDispatch
       req = Rack::Request.new env
 
       if req.get? || req.head?
+        # mark string尽量freeze
         path = req.path_info.chomp("/".freeze)
         if match = @file_handler.match?(path)
           req.path_info = match

@@ -6,6 +6,7 @@ module ActionDispatch
     #
     # See ActionDispatch::Routing for general information about routing and routes.rb.
     #
+    # mark UrlFor 可以在model和service或者其他地方生成url
     # <b>Tip:</b> If you need to generate URLs from your models or some other place,
     # then ActionController::UrlFor is what you're looking for. Read on for
     # an introduction. In general, this module should not be included on its own,
@@ -73,6 +74,7 @@ module ActionDispatch
     # you can do that by including Rails.application.routes.url_helpers in your class:
     #
     #   class User < ActiveRecord::Base
+    # mark
     #     include Rails.application.routes.url_helpers
     #
     #     def base_uri
