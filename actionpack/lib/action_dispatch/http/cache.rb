@@ -7,6 +7,7 @@ module ActionDispatch
 
         def if_modified_since
           if since = get_header(HTTP_IF_MODIFIED_SINCE)
+            # mark e.g. Sat Apr 12 2014 12:22:00 GMT+1000
             Time.rfc2822(since) rescue nil
           end
         end

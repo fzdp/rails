@@ -87,6 +87,7 @@ module ActiveSupport
 
       private
         def retrieve_cache_key(key)
+          # mark case when then 这样写起来更方便,而且case后面居然没有加参数
           case
           when key.respond_to?(:cache_key) then key.cache_key
           when key.is_a?(Array)            then key.map { |element| retrieve_cache_key(element) }.to_param

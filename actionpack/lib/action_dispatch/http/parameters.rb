@@ -96,6 +96,7 @@ module ActionDispatch
         def parse_formatted_parameters(parsers)
           return yield if content_length.zero? || content_mime_type.nil?
 
+          # mark return yield，将yield理解成一个function执行
           strategy = parsers.fetch(content_mime_type.symbol) { return yield }
 
           begin

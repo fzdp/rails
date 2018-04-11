@@ -39,6 +39,7 @@ module ActionDispatch
           deep_regexps, regexps = regexps.partition { |r| r.to_s.include?("\\.".freeze) }
           deep_strings, strings = strings.partition { |s| s.include?("\\.".freeze) }
 
+          # mark string尽量freeze
           regexps << Regexp.new(strings.join("|".freeze), true) unless strings.empty?
           deep_regexps << Regexp.new(deep_strings.join("|".freeze), true) unless deep_strings.empty?
 

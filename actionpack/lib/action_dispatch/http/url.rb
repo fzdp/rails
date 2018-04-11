@@ -81,6 +81,7 @@ module ActionDispatch
         def add_params(path, params)
           params = { params: params } unless params.is_a?(Hash)
           params.reject! { |_, v| v.to_param.nil? }
+          # mark params#to_query
           query = params.to_query
           path << "?#{query}" unless query.empty?
         end
@@ -142,6 +143,7 @@ module ActionDispatch
             "http://"
           when false, "//"
             "//"
+              # mark 这个$1用得好恰当
           when PROTOCOL_REGEXP
             "#{$1}://"
           else
