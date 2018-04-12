@@ -224,6 +224,7 @@ module Mime
     def initialize(string, symbol = nil, synonyms = [])
       @symbol, @synonyms = symbol, synonyms
       @string = string
+      # mark 这里为什么用hash
       @hash = [@string, @synonyms, @symbol].hash
     end
 
