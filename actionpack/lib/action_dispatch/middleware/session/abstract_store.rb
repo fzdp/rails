@@ -8,9 +8,15 @@ module ActionDispatch
   module Session
     class SessionRestoreError < StandardError #:nodoc:
       def initialize
+        # mark $!（之前的exception）用在这里真合适！当然为了获取原来的异常，也可以使用Exception#cause
+        # e.g.
+        # rescue => e
+        #   puts "#{ e } caused by #{ e.cause } while eating #{ e.cause.food }"
+        #   puts e.cause.backtrace.first
         super("Session contains objects whose class definition isn't available.\n" \
           "Remember to require the classes for all objects kept in the session.\n" \
           "(Original exception: #{$!.message} [#{$!.class}])\n")
+        # mark 设置了backtrace，方便debug
         set_backtrace $!.backtrace
       end
     end
