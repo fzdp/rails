@@ -14,6 +14,7 @@ module AbstractController
   # expected to provide their own +render+ method, since rendering means
   # different things depending on the context.
   class Base
+    # mark 为什么要使用attr_internal呢
     attr_internal :response_body
     attr_internal :action_name
     attr_internal :formats
@@ -27,6 +28,7 @@ module AbstractController
 
       # Define a controller as abstract. See internal_methods for more
       # details.
+      # mark 通过class ivar来标记是否为抽象类
       def abstract!
         @abstract = true
       end

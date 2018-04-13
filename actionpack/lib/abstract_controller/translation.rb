@@ -2,6 +2,7 @@ module AbstractController
   module Translation
     # Delegates to <tt>I18n.translate</tt>. Also aliased as <tt>t</tt>.
     #
+    # mark i18n可以使用.开头的，更方便
     # When the given key starts with a period, it will be scoped by the current
     # controller and action. So if you call <tt>translate(".foo")</tt> from
     # <tt>PeopleController#index</tt>, it will convert the call to

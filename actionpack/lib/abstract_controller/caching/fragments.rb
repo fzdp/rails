@@ -64,6 +64,7 @@ module AbstractController
       def fragment_cache_key(key)
         head = self.class.fragment_cache_keys.map { |k| instance_exec(&k) }
         tail = key.is_a?(Hash) ? url_for(key).split("://").last : key
+        # mark 这个方法名起的真不错，expand...
         ActiveSupport::Cache.expand_cache_key([*head, *tail], :views)
       end
 
@@ -136,6 +137,7 @@ module AbstractController
 
       def instrument_fragment_cache(name, key) # :nodoc:
         payload = instrument_payload(key)
+        # mark instrument的name命名规则： 'write_fragment.action_controller'
         ActiveSupport::Notifications.instrument("#{name}.#{instrument_name}", payload) { yield }
       end
     end

@@ -145,6 +145,7 @@ module ActiveSupport
       def halted_callback_hook(filter)
       end
 
+    # mark module还有class啥的也可以private
       module Conditionals # :nodoc:
         class Value
           def initialize(&block)

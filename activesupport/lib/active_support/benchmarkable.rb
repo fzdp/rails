@@ -39,6 +39,7 @@ module ActiveSupport
 
         result = nil
         ms = Benchmark.ms { result = options[:silence] ? logger.silence { yield } : yield }
+        # mark 使用%格式来处理含多个参数的字符串时
         logger.send(options[:level], "%s (%.1fms)" % [ message, ms ])
         result
       else
