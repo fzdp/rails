@@ -12,14 +12,17 @@ module ActionController
 
     include AbstractController::Logger
 
+    # mark view的渲染时间
     attr_internal :view_runtime
 
     def process_action(*args)
       raw_payload = {
         controller: self.class.name,
         action: action_name,
+        # mark 参数过滤
         params: request.filtered_parameters,
         headers: request.headers,
+        # mark 返回symbol或者to_s，如:json
         format: request.format.ref,
         method: request.request_method,
         path: request.fullpath

@@ -39,6 +39,7 @@ module ActionController
 
     def initialize(params) # :nodoc:
       @params = params
+      # mark 还考虑到了单复数的情况👍
       super("found unpermitted parameter#{'s' if params.size > 1 }: #{params.map { |e| ":#{e}" }.join(", ")}")
     end
   end

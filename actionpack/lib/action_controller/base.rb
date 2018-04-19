@@ -4,6 +4,7 @@ require "action_controller/metal/params_wrapper"
 
 module ActionController
   # Action Controllers are the core of a web request in \Rails. They are made up of one or more actions that are executed
+  # mark 看到了吧？action必须是public
   # on request and then either it renders a template or redirects to another action. An action is defined as a public method
   # on the controller, which will automatically be made accessible to the web-server through \Rails Routes.
   #
@@ -154,6 +155,7 @@ module ActionController
   #     render action: "overthere" # raises DoubleRenderError
   #   end
   #
+  # mark 这里指出了要使用 and return
   # If you need to redirect on the condition of something, then be sure to add "and return" to halt execution.
   #
   #   def do_something
@@ -164,6 +166,7 @@ module ActionController
   class Base < Metal
     abstract!
 
+    # mark request和response和ActionController::Metal有啥关系
     # We document the request and response methods here because albeit they are
     # implemented in ActionController::Metal, the type of the returned objects
     # is unknown at that level.
@@ -251,7 +254,9 @@ module ActionController
     end
     setup_renderer!
 
+    # mark ivar表示实例变量
     # Define some internal variables that should not be propagated to the view.
+    # mark Set#+ 参数可以是数组
     PROTECTED_IVARS = AbstractController::Rendering::DEFAULT_PROTECTED_INSTANCE_VARIABLES + %i(
       @_params @_response @_request @_config @_url_options @_action_has_layout @_view_context_class
       @_view_renderer @_lookup_context @_routes @_view_runtime @_db_runtime @_helper_proxy

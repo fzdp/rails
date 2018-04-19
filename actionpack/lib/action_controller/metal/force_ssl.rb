@@ -60,7 +60,9 @@ module ActionController
       # * <tt>unless</tt>     - A symbol naming an instance method or a proc; the
       #   callback will be called only when it returns a false value.
       def force_ssl(options = {})
+        # mark Hash#slice 选取特定的key，白名单模式，返回hash；Hash#except删除特定的key，黑名单模式，返回删除之后的hash
         action_options = options.slice(*ACTION_OPTIONS)
+        # mark 形参前添加*，确实挺方便的
         redirect_options = options.except(*ACTION_OPTIONS)
         before_action(action_options) do
           force_ssl_redirect(redirect_options)

@@ -23,6 +23,7 @@ module ActionController
 
     # A Set containing renderer names that correspond to available renderer procs.
     # Default values are <tt>:json</tt>, <tt>:js</tt>, <tt>:xml</tt>.
+    # mark 处理集合数据类型，最好使用Set，不要总是使用Array
     RENDERERS = Set.new
 
     included do
@@ -146,12 +147,15 @@ module ActionController
         if options.key?(name)
           _process_options(options)
           method_name = Renderers._render_with_renderer_method_name(name)
+          # mark options = {a: 1, b:2}; options.delete(:a) # => 1
+          # mark 通过add实现了具体的render方法，比如下面的add :json
           return send(method_name, options.delete(name), options)
         end
       end
       nil
     end
 
+    # mark def _render_with_renderer_json(json, options)
     add :json do |json, options|
       json = json.to_json(options) unless json.kind_of?(String)
 

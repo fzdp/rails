@@ -116,6 +116,7 @@ module ActionController
       response.last_modified = last_modified if last_modified
       response.cache_control[:public] = true if public
 
+      # mark fresh表示新鲜，即资源是否有效
       head :not_modified if request.fresh?(response)
     end
 
@@ -126,6 +127,7 @@ module ActionController
     #
     # === Parameters:
     #
+    # mark weak etag 和 strong etag 的区别
     # * <tt>:etag</tt> Sets a "weak" ETag validator on the response. See the
     #   +:weak_etag+ option.
     # * <tt>:weak_etag</tt> Sets a "weak" ETag validator on the response.
@@ -214,6 +216,7 @@ module ActionController
     #     super if stale? @article, template: 'widgets/show'
     #   end
     #
+    # mark 注意后面使用了hash来定义参数
     def stale?(object = nil, **freshness_kwargs)
       fresh_when(object, **freshness_kwargs)
       !request.fresh?(response)
@@ -245,6 +248,8 @@ module ActionController
     # Sets an HTTP 1.1 Cache-Control header of <tt>no-cache</tt>. This means the
     # resource will be marked as stale, so clients must always revalidate.
     # Intermediate/browser caches may still store the asset.
+
+    # mark 无缓存
     def expires_now
       response.cache_control.replace(no_cache: true)
     end

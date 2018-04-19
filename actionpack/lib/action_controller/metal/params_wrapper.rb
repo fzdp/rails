@@ -148,6 +148,7 @@ module ActionController
               model_klass
             else
               namespaces = model_name.split("::")
+              # mark Array#delete_at
               namespaces.delete_at(-2)
               break if namespaces.last == model_name
               model_name = namespaces.join("::")

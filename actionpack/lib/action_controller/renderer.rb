@@ -36,6 +36,7 @@ module ActionController
   class Renderer
     attr_reader :defaults, :controller
 
+    # mark hash也要freeze，只要你觉得它不可以被改变
     DEFAULTS = {
       http_host: "example.org",
       https: false,
@@ -89,6 +90,7 @@ module ActionController
         new_env
       end
 
+    # mark 常量可以用于很多地方，不仅仅是字符串，也可以是hash或者lambda等等
       RACK_KEY_TRANSLATION = {
         http_host:   "HTTP_HOST",
         https:       "HTTPS",

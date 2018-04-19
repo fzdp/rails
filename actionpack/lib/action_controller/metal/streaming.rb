@@ -33,6 +33,7 @@ module ActionController #:nodoc:
   #
   # == When to use streaming
   #
+  # mark streaming的使用场景
   # Streaming may be considered to be overkill for lightweight actions like
   # +new+ or +edit+. The real benefit of streaming is on expensive actions
   # that, for example, do a lot of queries on the database.
@@ -57,6 +58,7 @@ module ActionController #:nodoc:
   #     render stream: true
   #   end
   #
+  # mark streaming的当前使用条件
   # Notice that :stream only works with templates. Rendering :json
   # or :xml with :stream won't work.
   #
@@ -114,6 +116,7 @@ module ActionController #:nodoc:
   # a helper called +provide+ that does the same as +content_for+ but tells the
   # layout to stop searching for other entries and continue rendering.
   #
+  # mark provide方法
   # For instance, the template above using +provide+ would be:
   #
   #   <%= provide :title, "Main" %>

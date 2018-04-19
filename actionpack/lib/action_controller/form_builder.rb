@@ -12,6 +12,7 @@ module ActionController
   #
   # The controller specifies a form builder as its default:
   #
+  # mark 可以设置默认的form_builder
   #   class AdminAreaController < ApplicationController
   #     default_form_builder AdminFormBuilder
   #   end

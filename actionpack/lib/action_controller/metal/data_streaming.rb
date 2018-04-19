@@ -46,6 +46,7 @@ module ActionController #:nodoc:
       #
       # Show a JPEG in the browser:
       #
+      # mark 这样显示图片，挺不错的
       #   send_file '/path/to.jpeg', type: 'image/jpeg', disposition: 'inline'
       #
       # Show a 404 page in the browser:
@@ -63,7 +64,9 @@ module ActionController #:nodoc:
       # http://www.mnot.net/cache_docs/ for an overview of web caching and
       # http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.9
       # for the Cache-Control header spec.
+    # mark No magic, just do some http header processing
       def send_file(path, options = {}) #:doc:
+        # mark File.file?(path) && File.readable?(path)来检查文件是否存在
         raise MissingFile, "Cannot read file #{path}" unless File.file?(path) && File.readable?(path)
 
         options[:filename] ||= File.basename(path) unless options[:url_based_filename]

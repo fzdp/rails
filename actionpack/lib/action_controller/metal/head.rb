@@ -15,6 +15,7 @@ module ActionController
     #   return head(:bad_request) unless valid_request?
     #   render
     #
+    # mark hash变量命名：SYMBOL_TO_STATUS_CODE, key_name_to_value_name
     # See Rack::Utils::SYMBOL_TO_STATUS_CODE for a full list of valid +status+ symbols.
     def head(status, options = {})
       if status.is_a?(Hash)
@@ -27,6 +28,7 @@ module ActionController
       content_type = options.delete(:content_type)
 
       options.each do |key, value|
+        # mark dasherize: 中划线、破折号
         headers[key.to_s.dasherize.split("-").each { |v| v[0] = v[0].chr.upcase }.join("-")] = value.to_s
       end
 

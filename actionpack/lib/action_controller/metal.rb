@@ -34,6 +34,7 @@ module ActionController
 
     private
 
+    # mark 这样常量就private了
       INCLUDE = ->(list, action) { list.include? action }
       EXCLUDE = ->(list, action) { !list.include? action }
       NULL    = ->(list, action) { true }
@@ -74,6 +75,7 @@ module ActionController
   # And then to route requests to your metal controller, you would add
   # something like this to <tt>config/routes.rb</tt>:
   #
+  # mark 这里可以看到，action的类方法使用场景
   #   get 'hello', to: HelloController.action(:index)
   #
   # The +action+ method returns a valid Rack application for the \Rails
@@ -143,6 +145,7 @@ module ActionController
       self.class.controller_name
     end
 
+    # mark 这样设置为attr_internal有何含义呢
     attr_internal :response, :request
     delegate :session, to: "@_request"
     delegate :headers, :status=, :location=, :content_type=,
@@ -231,6 +234,7 @@ module ActionController
     # Returns a Rack endpoint for the given action name.
     def self.action(name)
       if middleware_stack.any?
+        # mark middleware起作用了
         middleware_stack.build(name) do |env|
           req = ActionDispatch::Request.new(env)
           res = make_response! req

@@ -228,6 +228,7 @@ module ActionController #:nodoc:
     # request, with this response then being accessible by calling #response.
     class Collector
       include AbstractController::Collector
+      # mark 实例变量也可以出现在其他实例方法中，不一定要在initialize方法中
       attr_accessor :format
 
       def initialize(mimes, variant = nil)
