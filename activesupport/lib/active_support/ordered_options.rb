@@ -64,6 +64,7 @@ module ActiveSupport
   #   h = ActiveSupport::InheritableOptions.new({ girl: 'Mary', boy: 'John' })
   #   h.girl # => 'Mary'
   #   h.boy  # => 'John'
+  # mark 这和hashie有点像
   class InheritableOptions < OrderedOptions
     def initialize(parent = nil)
       if parent.kind_of?(OrderedOptions)

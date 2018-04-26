@@ -86,6 +86,7 @@ module ActionView
       end
 
       # Temporary skip passing the details_key forward.
+      # mark 执行block前后保持变量值不变，使用ensure恰到好处
       def disable_cache
         old_value, @cache = @cache, false
         yield

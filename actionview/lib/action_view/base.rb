@@ -85,6 +85,7 @@ module ActionView #:nodoc:
   #
   # == Builder
   #
+  # mark xml模板
   # Builder templates are a more programmatic alternative to ERB. They are especially useful for generating XML content. An XmlMarkup object
   # named +xml+ is automatically made available to templates with a <tt>.builder</tt> extension.
   #
@@ -200,6 +201,7 @@ module ActionView #:nodoc:
       if context.is_a?(ActionView::Renderer)
         @view_renderer = context
       else
+        # mark 三元运算符可以分两行写
         lookup_context = context.is_a?(ActionView::LookupContext) ?
           context : ActionView::LookupContext.new(context)
         lookup_context.formats  = formats if formats

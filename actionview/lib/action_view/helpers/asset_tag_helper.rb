@@ -257,6 +257,7 @@ module ActionView
       #   image_alt('underscored_file_name.png')
       #   # => Underscored file name
       def image_alt(src)
+        # mark 获取不带扩展名的文件名, '.*'.freeze
         File.basename(src, ".*".freeze).sub(/-[[:xdigit:]]{32,64}\z/, "".freeze).tr("-_".freeze, " ".freeze).capitalize
       end
 

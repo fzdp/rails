@@ -89,6 +89,7 @@ module ActionView
         else
           I18n.translate(scope_key_by_partial(key), options.merge(raise: i18n_raise))
         end
+        # mark 方法体内部begin能省就省
       rescue I18n::MissingTranslationData => e
         if remaining_defaults.present?
           translate remaining_defaults.shift, options.merge(default: remaining_defaults)

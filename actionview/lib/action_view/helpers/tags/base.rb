@@ -105,6 +105,7 @@ module ActionView
 
           def tag_name(multiple = false, index = nil)
             # a little duplication to construct less strings
+            # mark case不加参数，就看when语句是否为true，如果是，执行相应结果，否则下一个when
             case
             when @object_name.empty?
               "#{sanitized_method_name}#{"[]" if multiple}"

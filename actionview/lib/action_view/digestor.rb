@@ -42,6 +42,7 @@ module ActionView
 
       # Create a dependency tree for template named +name+.
       def tree(name, finder, partial = false, seen = {})
+        # mark %w|a b c| == %w(a b c) == %w{a b c}
         logical_name = name.gsub(%r|/_|, "/")
 
         options = {}
@@ -56,6 +57,7 @@ module ActionView
             node = seen[template.identifier] = Node.create(name, logical_name, template, partial)
 
             deps = DependencyTracker.find_dependencies(name, template, finder.view_paths)
+            # mark Array#uniq 通过block返回值来比较
             deps.uniq { |n| n.gsub(%r|/_|, "/") }.each do |dep_file|
               node.children << tree(dep_file, finder, true, seen)
             end

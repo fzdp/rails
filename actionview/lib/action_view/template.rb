@@ -305,6 +305,7 @@ module ActionView
         end
 
         mod.module_eval(source, identifier, 0)
+        # mark 当对象被销毁时执行回调
         ObjectSpace.define_finalizer(self, Finalizer[method_name, mod])
       end
 
@@ -341,6 +342,8 @@ module ActionView
       end
 
       def identifier_method_name
+        # mark tr中^表示否定，如果只是涉及替换的话，优先使用tr，其次考虑(g)sub(再一次强调，无论何时使用字符串，都要考虑freeze，除非已经确定使用ruby2.5)
+        # 参考fast-ruby项目中的beachmark
         inspect.tr("^a-z_".freeze, "_".freeze)
       end
 

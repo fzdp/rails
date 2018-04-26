@@ -39,6 +39,7 @@ module ActionView
           routes  = respond_to?(:_routes)  && _routes
           helpers = respond_to?(:_helpers) && _helpers
 
+          # mark 这里为什么要使用Class.new呢？
           Class.new(ActionView::Base) do
             if routes
               include routes.url_helpers(supports_path)

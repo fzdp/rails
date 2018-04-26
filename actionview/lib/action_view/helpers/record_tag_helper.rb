@@ -1,6 +1,7 @@
 module ActionView
   module Helpers
     module RecordTagHelper
+      # mark 如果不打算使用参数的话，直接用*作为形参就可以了
       def div_for(*)
         raise NoMethodError, "The `div_for` method has been removed from " \
           "Rails. To continue using it, add the `record_tag_helper` gem to " \

@@ -193,6 +193,7 @@ module ActionView
         html_options = convert_options_to_data_attributes(options, html_options)
 
         url = url_for(options)
+        # mark 涉及字符串的尽量freeze，不一定非要在常量里
         html_options["href".freeze] ||= url
 
         content_tag("a".freeze, name || url, html_options, &block)
@@ -554,6 +555,7 @@ module ActionView
 
         url_string.chomp!("/") if url_string.start_with?("/") && url_string != "/"
 
+        # mark %r{}.match? 或者 str =~ /regex/
         if %r{^\w+://}.match?(url_string)
           url_string == "#{request.protocol}#{request.host_with_port}#{request_uri}"
         else

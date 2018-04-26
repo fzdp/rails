@@ -127,6 +127,7 @@ module ActionView
       #
       #   highlight('<a href="javascript:alert(\'no!\')">ruby</a> on rails', 'rails', sanitize: false)
       #   # => "<a>ruby</a> on <mark>rails</mark>"
+      # mark 这个功能很赞啊
       def highlight(text, phrases, options = {})
         text = sanitize(text) if options.fetch(:sanitize, true)
 
