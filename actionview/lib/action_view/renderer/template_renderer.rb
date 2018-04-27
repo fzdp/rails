@@ -47,6 +47,7 @@ module ActionView
       def render_template(template, layout_name = nil, locals = nil)
         view, locals = @view, locals || {}
 
+        # mark 支持block的方法可以用 xx with xx 这种格式来命名
         render_with_layout(layout_name, locals) do |layout|
           instrument(:template, identifier: template.identifier, layout: layout.try(:virtual_path)) do
             template.render(view, locals) { |*name| view._layout_for(*name) }

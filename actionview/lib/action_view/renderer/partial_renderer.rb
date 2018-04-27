@@ -3,6 +3,7 @@ require "action_view/renderer/partial_renderer/collection_caching"
 
 module ActionView
   class PartialIteration
+    # mark 看到没，可以读取partial当前的迭代属性
     # The number of iterations that will be done by the partial.
     attr_reader :size
 
@@ -150,6 +151,7 @@ module ActionView
   #
   # == \Rendering partials with layouts
   #
+  # mark partial也可以使用layout
   # Partials can have their own layouts applied to them. These layouts are different than the ones that are
   # specified globally for the entire action, but they work in a similar fashion. Imagine a list with two types
   # of users:
@@ -368,6 +370,7 @@ module ActionView
 
         partial = options[:partial]
 
+        # mark Class === instance
         if String === partial
           @has_object = options.key?(:object)
           @object     = options[:object]
@@ -532,6 +535,7 @@ module ActionView
         [variable, variable_counter, variable_iteration]
       end
 
+    # mark %s用的挺好的，如果API的URL中也参数，也可以把参数值用%s来替代！
       IDENTIFIER_ERROR_MESSAGE = "The partial name (%s) is not a valid Ruby identifier; " \
                                  "make sure your partial name starts with underscore."
 
