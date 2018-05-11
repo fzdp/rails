@@ -140,6 +140,7 @@ module ActiveRecord
         # Returns the class type of the record using the current module as a prefix. So descendants of
         # MyApp::Business::Account would appear as MyApp::Business::AccountSubclass.
         def compute_type(type_name)
+          # mark 任何时候碰到字符串都不忘freeze
           if type_name.start_with?("::".freeze)
             # If the type is prefixed with a scope operator then we assume that
             # the type_name is an absolute reference.
@@ -152,6 +153,7 @@ module ActiveRecord
 
             # Build a list of candidates to search for
             candidates = []
+            # mark $`是啥？
             name.scan(/::|$/) { candidates.unshift "#{$`}::#{type_name}" }
             candidates << type_name
 
