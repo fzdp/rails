@@ -34,6 +34,7 @@ module ActiveRecord
     end
 
     def value
+      # mark prefer defined? than ||=
       # `defined?` is cheaper than `||=` when we get back falsy values
       @value = type_cast(value_before_type_cast) unless defined?(@value)
       @value

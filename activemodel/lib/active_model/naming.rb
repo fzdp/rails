@@ -233,6 +233,7 @@ module ActiveModel
     #   Person.model_name.singular # => "person"
     #   Person.model_name.plural   # => "people"
     def model_name
+      # mark 如果某个实例变量只是用来cache的话，命名可以采用_xx方法，加上下划线前缀
       @_model_name ||= begin
         namespace = parents.detect do |n|
           n.respond_to?(:use_relative_model_naming?) && n.use_relative_model_naming?

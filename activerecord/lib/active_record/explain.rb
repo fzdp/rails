@@ -25,6 +25,7 @@ module ActiveRecord
         msg << connection.explain(sql, binds)
       end.join("\n")
 
+      # mark def里面还可以def
       # Overriding inspect to be more human readable, especially in the console.
       def str.inspect
         self

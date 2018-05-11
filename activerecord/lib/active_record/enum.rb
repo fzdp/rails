@@ -158,6 +158,7 @@ module ActiveRecord
 
         # def self.statuses() statuses end
         detect_enum_conflict!(name, name.to_s.pluralize, true)
+        # mark 定义class method
         klass.singleton_class.send(:define_method, name.to_s.pluralize) { enum_values }
 
         detect_enum_conflict!(name, name)
@@ -168,6 +169,7 @@ module ActiveRecord
           EnumType.new(attr, enum_values, subtype)
         end
 
+        # mark 这里使用module_eval有什么好处呢
         _enum_methods_module.module_eval do
           pairs = values.respond_to?(:each_pair) ? values.each_pair : values.each_with_index
           pairs.each do |value, i|
@@ -204,6 +206,7 @@ module ActiveRecord
 
     private
       def _enum_methods_module
+        # mark 实例变量如果只是为了cache，请在变量名前添加下划线_
         @_enum_methods_module ||= begin
           mod = Module.new
           include mod
